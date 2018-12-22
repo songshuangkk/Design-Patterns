@@ -10,6 +10,8 @@ public class GumballMachine {
 
   private State soldState;
 
+  private State winnerState;
+
   private State state  = soldOutState;
 
   private int count = 0;
@@ -73,6 +75,14 @@ public class GumballMachine {
 
   public State getSoldState() {
     return soldState;
+  }
+
+  public State getWinnerState() {
+    return winnerState;
+  }
+
+  public void setWinnerState(State winnerState) {
+    this.winnerState = winnerState;
   }
 
   public int getCount() {
