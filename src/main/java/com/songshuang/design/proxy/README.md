@@ -74,3 +74,16 @@ rmic有一些选项可以调整，包括不要产生skeleton、查看源代码�
 ```jshelllanguage
 java myRemoteImpl
 ```
+
+## 客户端进获取stub对象
+客户必须取得stub对象(我们的代理)以调用其中的方法。所以我们就需要RMI Registry的帮忙。客户从Registry中寻找(lookup)代理，
+就好像在电话簿中寻找一样。
+
+### 具体实现
+* 客户端到RMI Registry中寻找
+```java
+Naming.lookup("rmi://127.0.0.1/RemoteHello")
+```
+* RMI Registry返回Stub对象
+(作为loopup方法的返回值)然后RMI会自动对stub反序列化。你再客户端必须有stub类(由rmic为你产生)，否则stub就无法被序列化。
+* 客户调用stub的方法，就像stub就是真正的服务对象一样
